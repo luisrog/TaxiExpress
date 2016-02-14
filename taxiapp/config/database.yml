@@ -19,7 +19,7 @@ default: &default
 
 development:
   <<: *default
-  database: taxiapp_development
+  database: taxiapp_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: taxiapp_production
+  database: taxiapp_prd
   username: taxiapp
   password: <%= ENV['TAXIAPP_DATABASE_PASSWORD'] %>
