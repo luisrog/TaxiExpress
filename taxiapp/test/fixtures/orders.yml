@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address_origin: MyString
+  address_destination: MyString
+  reference: MyString
+  state: MyString
+  time_estimated: 1
+  payment_type: 1
+  promotion_code: MyString
+  amount: 9.99
+  start_time: 2016-02-15 00:36:52
+  end_time: MyString
+
+two:
+  address_origin: MyString
+  address_destination: MyString
+  reference: MyString
+  state: MyString
+  time_estimated: 1
+  payment_type: 1
+  promotion_code: MyString
+  amount: 9.99
+  start_time: 2016-02-15 00:36:52
+  end_time: MyString

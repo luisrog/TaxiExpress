@@ -1,0 +1,47 @@
+<h1>Order#client</h1>
+<p>Find me in app/views/order/client.html.erb</p>
+
+<%= form_for @order, url: order_create_path(@order) do |f| %>
+    <div class="row">
+    <div class="col-sm-12"></div>
+        <div class="col-sm-1"></div>
+        <div class="row form-group">
+            <div class="col-sm-10">
+                <%= f.text_field :address_origin,  :class => 'form-control', :placeholder => 'Origen' %>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-sm-10">
+                <%= f.text_field :address_destination,  :class => 'form-control', :placeholder => 'Destino' %>
+            </div>
+        </div>
+        
+        <div class="col-sm-1"></div>
+         <div class="row form-group">
+            <div class="col-sm-10">
+                <%= f.text_field :reference,  :class => 'form-control', :placeholder => 'Lugar de Referencia' %>
+            </div>
+         </div>
+        <div class="col-sm-1"></div>
+             <div class="row form-group">
+                <div class="col-sm-4">
+                    <%= f.text_field :promotion_code,  :class => 'form-control', :placeholder => 'Codigo de Promocion' %>
+                </div>
+                <div class="col-sm-3">
+                    <%= f.text_field :time_estimated,  :class => 'form-control', :placeholder => 'Tiempo Estimado' %>
+                </div>
+                <div class="col-sm-3">
+                    <%= f.text_field :payment_type,  :class => 'form-control', :placeholder => 'Forma de Pago' %>
+                </div>
+
+        <div class="col-sm-1"></div>
+             </div>
+        <div class="col-sm-1"></div>
+            <div class="row form-group">
+                <div class="col-sm-10">
+                    <%= f.submit 'Pedir YA!', :class => 'btn btn-primary btn-lg btn-block' %>
+                </div>
+            </div>
+        <div class="col-sm-1"></div>
+    </div>
+<% end %>

@@ -1,0 +1,15 @@
+<h6 class="text-center">COMPLETA ESTOS CAMPOS PARA INGRESAR</h6>
+<%= form_for @user, url: user_login_path(@user) do |f| %>
+    <div class="form-group">
+        <%= f.text_field :email,  :class => 'form-control', :placeholder => 'Email' %>
+        
+    </div>
+    <div class="form-group">
+        <%= f.text_field :passwd,  :class => 'form-control', :placeholder => 'Password' %>
+    </div>
+    <div class="form-group">
+        <%= f.submit 'Ingresa', :class => 'btn btn-primary btn-lg btn-block' %>
+        <span class="pull-right"><a href="/register">Registro</a></span><span><a href="#">Ayuda?</a></span>
+    </div>
+<% end %>
+ 
