@@ -14,6 +14,8 @@
 ActiveRecord::Schema.define(version: 20160215003652) do
 
   create_table "orders", force: :cascade do |t|
+    t.integer  "user_client",         limit: 4
+    t.integer  "user_driver",         limit: 4
     t.string   "address_origin",      limit: 255
     t.string   "address_destination", limit: 255
     t.string   "reference",           limit: 255
@@ -27,6 +29,9 @@ ActiveRecord::Schema.define(version: 20160215003652) do
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
   end
+
+  add_index "orders", ["user_client"], name: "index_orders_on_user_client", using: :btree
+  add_index "orders", ["user_driver"], name: "index_orders_on_user_driver", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255
@@ -47,4 +52,6 @@ ActiveRecord::Schema.define(version: 20160215003652) do
     t.datetime "updated_at",                         null: false
   end
 
+  add_foreign_key "orders", "users", column: "user_client"
+  add_foreign_key "orders", "users", column: "user_driver"
 end

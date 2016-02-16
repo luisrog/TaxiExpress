@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   post 'user/login'
    
   get 'user/logout'
+  
+  resources :order
    
   get 'order/client'
    
@@ -28,7 +30,9 @@ Rails.application.routes.draw do
    
   post 'order/create'
    
-  post 'order/edit'
+  get 'order/edit'
+  
+  post 'order/update'
    
   get 'order/show'
    

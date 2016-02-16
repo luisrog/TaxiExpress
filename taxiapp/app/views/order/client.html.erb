@@ -1,6 +1,42 @@
 <h1>Order#client</h1>
 <p>Find me in app/views/order/client.html.erb</p>
 
+<%= @orders.inspect %>
+
+<br/>
+<br/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Estado</th>
+            <th>Importe</th>
+            <th>Chofer</th>
+            <th>Vehiculo</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Creacion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @orders.each(:as => :hash) do |row, index| %>
+        <tr>
+            <td><%= row["address_origin"] %></td>
+            <td><%= row["address_destination"] %></td>
+            <td><%= row["state"] %></td>
+            <td><%= row["amount"] %></td>
+            <td><%= row["first_name"] %></td>
+            <td><%= row["brand"] %></td>
+            <td><%= row["start_time"] %></td>
+            <td><%= row["end_time"] %></td>
+            <td><%= row["created_at"] %></td>
+        </tr>    
+        <% end %>
+    </tbody>
+</table>
+
 <%= form_for @order, url: order_create_path(@order) do |f| %>
     <div class="row">
     <div class="col-sm-12"></div>

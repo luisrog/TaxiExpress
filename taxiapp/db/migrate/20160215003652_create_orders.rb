@@ -1,6 +1,8 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
+      t.integer :user_client, index: true
+      t.integer :user_driver, index: true
       t.string :address_origin
       t.string :address_destination
       t.string :reference
@@ -14,5 +16,7 @@ class CreateOrders < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_foreign_key :orders, :users, column: :user_client
+    add_foreign_key :orders, :users, column: :user_driver
   end
 end
