@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get 'user/show'
   
   resources :user
-  resources :order
 
   get 'order/driver'
   post 'order/create'
@@ -27,6 +26,7 @@ Rails.application.routes.draw do
   get 'order/edit'
   post 'order/update'
   
+  resources :order
   
   
    

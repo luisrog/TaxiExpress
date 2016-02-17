@@ -34,7 +34,14 @@
                             <tr>
                                 <td>
                                     <%= f.hidden_field :id, :value => @order.id %>
-                                    <%= f.submit 'Confirmar Orden', :class => 'btn btn-success btn-lg btn-block' %>
+                                    
+                                    <% if @order.state == "Confirmado" %>
+                                        <%= f.submit 'Iniciar Recorredo', :class => 'btn btn-primary btn-lg btn-block' %>
+                                    <% elsif @order.state == "Iniciado" %>
+                                        <%= f.submit 'Terminar Pedido', :class => 'btn btn-danger btn-lg btn-block' %>
+                                    <% elsif  @order.state == "Pendiente" %>
+                                        <%= f.submit 'Confirmar Orden', :class => 'btn btn-success btn-lg btn-block' %>
+                                    <% end %>
                                 </td>
                             </tr>
                         </tbody>

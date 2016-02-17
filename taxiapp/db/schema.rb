@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 20160217082049) do
     t.string   "brand",                  limit: 255
     t.string   "modele",                 limit: 255
     t.string   "plate",                  limit: 255
-    t.string   "state_driver",           limit: 255
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.string   "state_driver",           limit: 255
   end
 
   add_foreign_key "orders", "users", column: "user_client"

@@ -3,7 +3,7 @@ class OrderController < ApplicationController
   def client
     @user = User.new
     @order = Order.new
-    @orders = ActiveRecord::Base.connection.execute("SELECT * FROM orders o LEFT JOIN users u ON o.user_driver = u.id WHERE o.user_client = '#{session[:current_user]['id']}' AND o.state != 'Terminado' ORDER BY o.created_at DESC LIMIT 3")
+    @orders = ActiveRecord::Base.connection.execute("SELECT * FROM orders o LEFT JOIN users u ON o.user_driver = u.id WHERE o.user_client = '#{session[:current_user]['id']}' AND o.state != 'Terminado' ORDER BY o.created_at ASC LIMIT 3")
   end
   
   def driver
@@ -12,9 +12,19 @@ class OrderController < ApplicationController
     user = User.find(session[:current_user]['id'])
     
     if(user.state_driver == "L")
-      @order = Order.find_by state: 'Pendiente'
+      order = ActiveRecord::Base.connection.execute("SELECT o.* FROM orders o WHERE o.state = 'Pendiente' ORDER BY o.id DESC")
     else
-      @order = ActiveRecord::Base.connection.execute("SELECT * FROM orders o LEFT JOIN users u ON o.user_driver = u.id WHERE o.user_driver = '#{session[:current_user]['id']}' AND o.state = 'Confirmado' AND u.state_driver = 'O'")
+      order = ActiveRecord::Base.connection.execute("SELECT o.* FROM orders o LEFT JOIN users u ON o.user_driver = u.id WHERE o.user_driver = '#{session[:current_user]['id']}' AND o.state != 'Pendiente' AND u.state_driver = 'O'")
+    end
+    
+    @order = Order.new
+    order.each(:as => :hash) do |row, index|
+      @order.id = row["id"]
+      @order.address_origin = row["address_origin"]
+      @order.address_destination = row["address_destination"]
+      @order.reference = row["reference"]
+      @order.time_estimated = row["time_estimated"]
+      @order.state = row["state"]
     end
     
     @orders = ActiveRecord::Base.connection.execute("SELECT * FROM orders o LEFT JOIN users u ON o.user_driver = u.id WHERE o.user_driver = '#{session[:current_user]['id']}' AND o.state != 'Pendiente' ORDER BY o.created_at LIMIT 3")
@@ -42,7 +52,7 @@ class OrderController < ApplicationController
     @user = User.new
   end
   
-  ##Busca ordenes pendientes para mostralo en el chofer
+  ##Busca ordenes pendientes para mostralo en el chofer o mostrar la orden que confirmo
   def show
     @user = User.new
     @order = Order.find_by state: 'P'
@@ -68,41 +78,45 @@ class OrderController < ApplicationController
     redirect_to(:back)
   end
   
-  ##Confirmacion de orden
+  ##Confirmacion de orden, iniciar y terminar la orden de acuerdo al estado
   def update
+    
     @user = User.new
     @order = Order.find(params[:order][:id])
-    @order.user_driver = session[:current_user]['id']
-    @order.state = 'Confirmado'
-    @order.save
     
-    user = User.find(session[:current_user]['id'])
-    user.state_driver = "O"
-    user.save()
+    if @order.state == "Pendiente"
     
-    redirect_to(:back)
-  end
-  
-  ##inicio de carrera
-  def updateStart
-    @user = User.new
-    @order = Order.find(params[:order][:id])
-    @order.start_time = Time.current.to_s
-    @order.save
-    redirect_to(:back)
-  end
-  
-  ##FIn y calculo de cobro de carrear
-  def updateEnd
-    @user = User.new
-    @order = Order.find(params[:order][:id])
-    @order.end_time = Time.current.to_s
-    @order.ammount = ((@order.end_time - @order.start_time) * 0.01)
-    @order.save
+      user = User.find(session[:current_user]['id'])
+      user.state_driver = "O"
+      user.save()
+      
+      @order.user_driver = session[:current_user]['id']
+      @order.state = 'Confirmado'
+      @order.save
     
-    user = User.find(session[:current_user]['id'])
-    user.state_driver = "L"
-    user.save()
+    elsif @order.state == "Confirmado"
+    
+      @user = User.new
+      @order = Order.find(params[:order][:id])
+      @order.state = 'Iniciado'
+      @order.start_time = Time.current.to_s
+      @order.save
+      
+    elsif @order.state == "Iniciado"
+    
+      @user = User.new
+      @order = Order.find(params[:order][:id])
+      @order.state = 'Terminado'
+      @order.end_time = Time.current.to_s
+      #@order.amount = (((@order.end_time.to_i - @order.start_time.to_i)) * 0.1)
+      @order.amount = 0
+      @order.save
+      
+      user = User.find(session[:current_user]['id'])
+      user.state_driver = "L"
+      user.save()
+    
+    end
     
     redirect_to(:back)
   end
