@@ -27,7 +27,7 @@ class OrderController < ApplicationController
       @order.state = row["state"]
     end
     
-    @orders = ActiveRecord::Base.connection.execute("SELECT * FROM orders o LEFT JOIN users u ON o.user_driver = u.id WHERE o.user_driver = '#{session[:current_user]['id']}' AND o.state != 'Pendiente' ORDER BY o.created_at LIMIT 3")
+    @orders = ActiveRecord::Base.connection.execute("SELECT * FROM orders o LEFT JOIN users u ON o.user_driver = u.id WHERE o.user_driver = '#{session[:current_user]['id']}' AND o.state != 'Pendiente' ORDER BY o.created_at DESC LIMIT 3")
   end
   
   def historialclient
@@ -108,8 +108,8 @@ class OrderController < ApplicationController
       @order = Order.find(params[:order][:id])
       @order.state = 'Terminado'
       @order.end_time = Time.current.to_s
-      #@order.amount = (((@order.end_time.to_i - @order.start_time.to_i)) * 0.1)
-      @order.amount = 0
+      @order.amount = ((@order.end_time.to_time.to_i - @order.start_time.to_time.to_i) * 0.01) + 5
+      #@order.amount = 0
       @order.save
       
       user = User.find(session[:current_user]['id'])
