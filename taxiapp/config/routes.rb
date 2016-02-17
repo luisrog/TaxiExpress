@@ -1,40 +1,34 @@
 Rails.application.routes.draw do
 
   get 'order/client'
-
   root 'pages#home'
-  
+  get 'pages/home'
   get 'pages/viaja'
-  
   get 'pages/conduce'
-  
   get 'pages/contacto'
-    
   get 'user/index'
-   
   get 'user/newclient'
-   
   get 'user/newdriver'
-   
   post 'user/create'
-   
+  get 'user/editclient'
+  get 'user/editdriver'
+  post 'user/update'
   post 'user/login'
-   
   get 'user/logout'
+  get 'user/show'
   
+  resources :user
   resources :order
-   
-  get 'order/client'
-   
+
   get 'order/driver'
-   
   post 'order/create'
-   
+  get 'order/historialclient'
+  get 'order/historialdriver'
   get 'order/edit'
-  
   post 'order/update'
-   
-  get 'order/show'
+  
+  
+  
    
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

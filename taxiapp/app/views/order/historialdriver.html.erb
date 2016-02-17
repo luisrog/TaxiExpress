@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Mis Carreras</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Estado</th>
+                        <th>Promocion</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @orders.each(:as => :hash) do |row, index| %>
+                    <tr>
+                        <td><%= row["address_origin"] %></td>
+                        <td><%= row["address_destination"] %></td>
+                        <td><%= row["state"] %></td>
+                        <td><%= row["promotion_code"] %></td>
+                        <td><%= row["start_time"] %></td>
+                        <td><%= row["end_time"] %></td>
+                    </tr>    
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>

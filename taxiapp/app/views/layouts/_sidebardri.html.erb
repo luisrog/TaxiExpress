@@ -1,0 +1,23 @@
+<div id="wrapper">
+    <div id="sidebar-wrapper" >
+        <ul class="sidebar-nav">
+            <li>
+                <center><i class="fa fa-bell fa-2x"></i></center>
+                <%= link_to "Alertas!", order_driver_path  %>
+            </li>
+            <li>
+                <center><i class="fa fa-list-alt fa-2x"></i></center>
+                <%= link_to "Carreras", order_historialdriver_path  %>
+            </li>
+            <li>
+                <center><i class="fa fa-user fa-2x"></i></center>
+                <%= link_to "Perfil", user_editdriver_path  %>
+            </li>
+            <li>
+                <center><i class="fa fa-unlock fa-2x"></i></center>
+                <%= link_to "Cerrar", user_logout_path  %>
+            </li>
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,112 @@
+<div id="page-content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Modificar Perfil</h1>
+                <hr>
+            </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-4 col-sm-3 col-xs-1"></div>
+          <div class="col-md-4 col-sm-6 col-xs-10">
+              
+              <%= form_for @user, url: user_update_path(@user) do |f| %>
+                  <div class="form-group">
+                       <label class="frm-title">Cuenta</label>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="email">Email address</label>
+                      <%= f.text_field :email,  :class => 'form-control', :placeholder => 'Email' %>
+                  </div>
+                  <div class="form-group">
+                    <label for="passwd">Password</label>
+                    <%= f.password_field :passwd,  :class => 'form-control', :placeholder => 'Password' %>
+                  </div>
+                  
+                  <br/>
+                  <div class="form-group">
+                       <label class="frm-title">Perfil</label>
+                  </div>
+                  <div class="form-group">
+                    <label for="first_name">Nombre</label>
+                    <%= f.text_field :first_name,  :class => 'form-control', :placeholder => 'Nombre' %>
+                  </div>
+                  <div class="form-group">
+                    <label for="last_name">Apellidos</label>
+                    <%= f.text_field :last_name,  :class => 'form-control', :placeholder => 'Apellido' %>
+                  </div>
+                  
+                    <div class="form-group">
+                    <label for="phone">Celular</label>
+                    <%= f.text_field :phone,  :class => 'form-control', :placeholder => 'Celular' %>
+                  </div>
+                  
+                  <br/>
+                <div class="form-group">
+                   <label class="frm-title">Pago</label>
+                </div>
+                  
+                  
+                  <div class="form-group">
+                    <label for="credit_card">Numero de Tarjeta</label>
+                    <%= f.text_field :credit_card,  :class => 'form-control', :placeholder => 'Numero de Tarjeta' %>
+                  </div>
+                  
+                    <div class="form-group">
+                        <div class="container-fluid frm-padding" >
+                            <div class="col-xs-7 frm-padding">
+                            <label for="expiration_credit_card">Fecha de Vencimiento</label>
+                            <%= f.text_field :expiration_credit_card,  :class => 'form-control', :placeholder => 'Fecha de Vencimiento' %>
+                            </div>
+                            
+                            <div class="col-xs-5 frm-padding">
+                            <label for="cvv">CVV</label>
+                            <%= f.text_field :cvv,  :class => 'form-control', :placeholder => 'CVV' %>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                                      
+                  <div class="form-group">
+                       <label class="frm-title">Documentacion</label>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="license">Licencia</label>
+                    <%= f.text_field :license,  :class => 'form-control', :placeholder => 'Licencia' %>
+                  </div>
+                  <div class="form-group">
+                    <label for="soat">Soat</label>
+                    <%= f.text_field :soat,  :class => 'form-control', :placeholder => 'Soat' %>
+                  </div>
+                  
+                  <br/>
+                  <div class="form-group">
+                       <label class="frm-title">Vehiculo</label>
+                  </div>
+                  <div class="form-group">
+                    <label for="brand">Marca</label>
+                    <%= f.text_field :brand,  :class => 'form-control', :placeholder => 'Marca' %>
+                  </div>
+                  <div class="form-group">
+                    <label for="modele">Modelo</label>
+                    <%= f.text_field :modele,  :class => 'form-control', :placeholder => 'Modelo' %>
+                  </div>
+                  
+                    <div class="form-group">
+                    <label for="plate">Placa</label>
+                    <%= f.text_field :plate,  :class => 'form-control', :placeholder => 'Placa' %>
+                  </div>           
+                   <%= f.hidden_field :role, :value => "3" %>
+                   <%= f.submit 'Modificar Perfil', :class => 'btn btn-primary btn-lg btn-block' %>
+              <% end %>
+            
+            
+              
+          </div>
+          <div class="col-md-4 col-sm-3 col-xs-1"></div>
+        </div>
+    </div>
+</div>

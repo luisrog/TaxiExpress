@@ -1,83 +1,109 @@
-<h1>Order#client</h1>
-<p>Find me in app/views/order/client.html.erb</p>
-
-<%= @orders.inspect %>
-
-<br/>
-<br/>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Origen</th>
-            <th>Destino</th>
-            <th>Estado</th>
-            <th>Importe</th>
-            <th>Chofer</th>
-            <th>Vehiculo</th>
-            <th>Inicio</th>
-            <th>Fin</th>
-            <th>Creacion</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @orders.each(:as => :hash) do |row, index| %>
-        <tr>
-            <td><%= row["address_origin"] %></td>
-            <td><%= row["address_destination"] %></td>
-            <td><%= row["state"] %></td>
-            <td><%= row["amount"] %></td>
-            <td><%= row["first_name"] %></td>
-            <td><%= row["brand"] %></td>
-            <td><%= row["start_time"] %></td>
-            <td><%= row["end_time"] %></td>
-            <td><%= row["created_at"] %></td>
-        </tr>    
-        <% end %>
-    </tbody>
-</table>
-
-<%= form_for @order, url: order_create_path(@order) do |f| %>
-    <div class="row">
-    <div class="col-sm-12"></div>
-        <div class="col-sm-1"></div>
-        <div class="row form-group">
-            <div class="col-sm-10">
-                <%= f.text_field :address_origin,  :class => 'form-control', :placeholder => 'Origen' %>
+<div id="page-content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Pedir Taxi</h1>
+                <hr>
             </div>
         </div>
-        <div class="row form-group">
-            <div class="col-sm-10">
-                <%= f.text_field :address_destination,  :class => 'form-control', :placeholder => 'Destino' %>
+        <div class="row">
+            <div class="col-md-7">
+                <%= form_for @order, url: order_create_path(@order) do |f| %>
+                    <div class="row">
+                
+                        <div class="row form-group">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                <%= f.text_field :address_origin,  :class => 'form-control', :placeholder => 'Origen' %>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                <%= f.text_field :address_destination,  :class => 'form-control', :placeholder => 'Destino' %>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        
+                          <div class="row form-group">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                <%= f.text_field :reference,  :class => 'form-control', :placeholder => 'Referencia' %>
+                            </div>
+                            <div class="col-sm-1"></div>
+                         </div>
+                         
+                        <div class="row form-group">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-4">
+                                <%= f.text_field :promotion_code,  :class => 'form-control', :placeholder => 'Promocion' %>
+                            </div>
+                            <div class="col-sm-3">
+                                <%= f.text_field :time_estimated,  :class => 'form-control', :placeholder => 'Estimado' %>
+                            </div>
+                            <div class="col-sm-3">
+                                <%= f.text_field :payment_type,  :class => 'form-control', :placeholder => 'Pago' %>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        
+                        <div class="row form-group">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                <%= f.submit 'Pedir YA!', :class => 'btn btn-primary btn-lg btn-block' %>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        
+                    </div>
+                <% end %>
+            </div>
+            <div class="col-md-5">
+                <iframe  width="400" height="240" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Universidad%20Peruana%20de%20Ciencias%20Aplicadas&key=AIzaSyAEz6ZPTS0y5N4hnuVx2nVqlK2tXsfftmQ" allowfullscreen></iframe>                    
             </div>
         </div>
         
-        <div class="col-sm-1"></div>
-         <div class="row form-group">
-            <div class="col-sm-10">
-                <%= f.text_field :reference,  :class => 'form-control', :placeholder => 'Lugar de Referencia' %>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Origen</th>
+                            <th>Destino</th>
+                            <th>Estado</th>
+                            <th>Promocion</th>
+                            <th>Chofer</th>
+                            <th>Vehiculo</th>
+                            <th>Inicio</th>
+                            <th>Fin</th>
+                            <th>Importe</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @orders.each(:as => :hash) do |row, index| %>
+                        <tr>
+                            <td><%= row["address_origin"] %></td>
+                            <td><%= row["address_destination"] %></td>
+                            <td><%= row["state"] %></td>
+                            <td><%= row["promotion_code"] %></td>
+                            <td><%= row["first_name"] %></td>
+                            <td><%= row["brand"] %></td>
+                            <td><%= row["start_time"] %></td>
+                            <td><%= row["end_time"] %></td>
+                            <td><%= row["amount"] %></td>
+                             <td>
+                                <a class="btn btn-primary" title="Ver detalle de este pedido"><i class="fa fa-search"></i></a>
+                                <a class="btn btn-success" title="Cambiar el tiempo de llegada al cliente"><i class="fa fa-pencil"></i></a>
+                                <a class="btn btn-danger" title="Rechazar la orden por motivos mayores"><i class="fa fa-close"></i></a>
+                            </td>
+                        </tr>    
+                        <% end %>
+                    </tbody>
+                </table>
             </div>
-         </div>
-        <div class="col-sm-1"></div>
-             <div class="row form-group">
-                <div class="col-sm-4">
-                    <%= f.text_field :promotion_code,  :class => 'form-control', :placeholder => 'Codigo de Promocion' %>
-                </div>
-                <div class="col-sm-3">
-                    <%= f.text_field :time_estimated,  :class => 'form-control', :placeholder => 'Tiempo Estimado' %>
-                </div>
-                <div class="col-sm-3">
-                    <%= f.text_field :payment_type,  :class => 'form-control', :placeholder => 'Forma de Pago' %>
-                </div>
-
-        <div class="col-sm-1"></div>
-             </div>
-        <div class="col-sm-1"></div>
-            <div class="row form-group">
-                <div class="col-sm-10">
-                    <%= f.submit 'Pedir YA!', :class => 'btn btn-primary btn-lg btn-block' %>
-                </div>
-            </div>
-        <div class="col-sm-1"></div>
+        </div>
     </div>
-<% end %>
+</div>
+

@@ -1,28 +1,93 @@
-<h1>Nueva Orden </h1>
-<%= form_for @order, url: order_update_path(@order) do |f| %>
-<table>
-    <tbody>
-        <tr>
-            <td>De : <%= @order.address_origin %> </td>
-        </tr>
-        <tr>
-            <td>Hacia : <%= @order.address_destination %> </td>
-        </tr>
-        <tr>
-            <td>Referencia : <%= @order.reference %> </td>
-        </tr>
-        <tr>
-            <td>Dentro de : <%= @order.time_estimated %> </td>
-        </tr>
-        <tr>
-            <td>Estado : <%= @order.state %> </td>
-        </tr>
-        <tr>
-            <td>
-                <%= f.hidden_field :id, :value => @order.id %>
-                <%= f.submit 'Confirmar Orden', :class => 'btn btn-primary btn-lg btn-block' %>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<% end %>
+<div id="page-content-wrapper">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Mis Pedidos</h1>
+                <hr>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-5">
+                <%= form_for @order, url: order_update_path(@order) do |f| %>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td style="border-top:none"><strong>MI PEDIDO EN ATENCION : </strong></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-home" style="color:green;"></i> <b>&nbsp; De :  </b> <%= @order.address_origin %> </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-taxi" style="color:orange;"></i> <b>&nbsp; Hacia :  </b> <%= @order.address_destination %> </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-bank" style="color:blue;"></i> <b>&nbsp; Referencia :  </b> <%= @order.reference %> </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-clock-o" style="color:white;"></i> <b>&nbsp; Dentro de :  </b> <%= @order.time_estimated %> min aprox.</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-flag" style="color:red;"></i> <b>&nbsp; Estado :  </b> <%= @order.state %> </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <%= f.hidden_field :id, :value => @order.id %>
+                                    <%= f.submit 'Confirmar Orden', :class => 'btn btn-success btn-lg btn-block' %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <% end %>
+            </div>
+            
+            <div class="col-md-7">
+                <iframe  width="640" height="270" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Universidad%20Peruana%20de%20Ciencias%20Aplicadas&key=AIzaSyAEz6ZPTS0y5N4hnuVx2nVqlK2tXsfftmQ" allowfullscreen></iframe>                    
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Origen</th>
+                            <th>Destino</th>
+                            <th>Estado</th>
+                            <th>Promocion</th>
+                            <th>Chofer</th>
+                            <th>Vehiculo</th>
+                            <th>Inicio</th>
+                            <th>Fin</th>
+                            <th>Importe</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @orders.each(:as => :hash) do |row, index| %>
+                        <tr>
+                            <td><%= row["address_origin"] %></td>
+                            <td><%= row["address_destination"] %></td>
+                            <td><%= row["state"] %></td>
+                            <td><%= row["promotion_code"] %></td>
+                            <td><%= row["first_name"] %></td>
+                            <td><%= row["brand"] %></td>
+                            <td><%= row["start_time"] %></td>
+                            <td><%= row["end_time"] %></td>
+                            <td><%= row["amount"] %></td>
+                            <td>
+                                <a class="btn btn-primary" title="Ver detalle de este pedido"><i class="fa fa-search"></i></a>
+                                <a class="btn btn-success" title="Cambiar el tiempo de llegada al cliente"><i class="fa fa-pencil"></i></a>
+                                <a class="btn btn-danger" title="Rechazar la orden por motivos mayores"><i class="fa fa-close"></i></a>
+                            </td>
+                        </tr>    
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+

@@ -22,10 +22,44 @@ class UserController < ApplicationController
                      soat:params[:user][:soat],
                      brand:params[:user][:brand],
                      modele:params[:user][:modele],
-                     plate:params[:user][:plate])
+                     plate:params[:user][:plate],
+                     state_driver:"L")
                      
     @user.save()
     redirect_to(:back)
+  end
+  
+  def editclient
+    @user = User.find(session[:current_user]['id'])
+  end
+  
+  def editdriver
+    @user = User.find(session[:current_user]['id'])
+  end
+  
+  def update
+    
+    @user = User.find(session[:current_user]['id'])
+    @user.email = params[:user][:email]
+    @user.passwd = params[:user][:passwd]
+    @user.first_name = params[:user][:first_name]
+    @user.last_name = params[:user][:last_name]
+    @user.phone = params[:user][:phone]
+    @user.credit_card = params[:user][:credit_card]
+    @user.expiration_credit_card = params[:user][:expiration_credit_card]
+    @user.cvv = params[:user][:cvv]
+    @user.license = params[:user][:license]
+    @user.soat = params[:user][:soat]
+    @user.brand = params[:user][:brand]
+    @user.modele = params[:user][:modele]
+    @user.plate = params[:user][:plate]
+                     
+    @user.save()
+    redirect_to(:back)
+  end
+  
+  def show
+    @user = User.new
   end
   
   def index
@@ -33,6 +67,8 @@ class UserController < ApplicationController
   end
   
   def login
+    
+    @user = User.new
     
     session[:current_user] = nil
     
