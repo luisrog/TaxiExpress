@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217082049) do
+ActiveRecord::Schema.define(version: 20160220012004) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_client",         limit: 4
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160217082049) do
     t.string   "reference",           limit: 255
     t.string   "state",               limit: 255
     t.integer  "time_estimated",      limit: 4
-    t.integer  "payment_type",        limit: 4
+    t.string   "payment_type",        limit: 255
     t.string   "promotion_code",      limit: 255
     t.decimal  "amount",                          precision: 10
     t.datetime "start_time"
