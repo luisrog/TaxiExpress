@@ -38,11 +38,11 @@
   </head>
   <body>
       <%= render 'layouts/navbar' %>
-      
+      <%= render 'layouts/alert' %>
       <section class="container-fluid" style="padding:0; margin-top:50px;" id="section1">
         <% if session[:current_user] %>
           <% if session[:current_user]['role'] == "1" %>
-            <%= render 'layouts/sidebarcli' %>
+            <%= render 'layouts/sidebaradmin' %>
           <% elsif session[:current_user]['role'] == "2" %>
             <%= render 'layouts/sidebarcli' %>
           <% elsif session[:current_user]['role'] == "3" %>
@@ -54,6 +54,7 @@
       </section>
       
       <%= render 'layouts/login' %>
+      <%= render 'layouts/modal' %>
       
       <script>
       $("#menu-toggle").click(function(e) {

@@ -19,12 +19,26 @@ Rails.application.routes.draw do
   
   resources :user
 
+  get 'order/admin'
   get 'order/driver'
   post 'order/create'
   get 'order/historialclient'
   get 'order/historialdriver'
   get 'order/edit'
   post 'order/update'
+  get 'order/dash'
+  get 'order/reportclient'
+  get 'order/reportorder'
+  post 'order/changecli'
+  post 'order/cancelcli'
+  post 'order/canceldri'
+  post 'order/edituseradmin'
+  post 'order/deluseradmin'
+  post 'order/editorderadmin'
+  post 'order/delorderadmin'
+  post 'order/editordercli'
+  post 'order/delordercli'
+  post 'order/delorderdri'
   
   resources :order
   

@@ -7,17 +7,16 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10">
+        <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Origen</th>
                         <th>Destino</th>
                         <th>Estado</th>
-                        <th>Promocion</th>
+                        <th>Estimado</th>
                         <th>Chofer</th>
-                        <th>Vehiculo</th>
+                        <th>Pago</th>
                         <th>Inicio</th>
                         <th>Fin</th>
                         <th>Importe</th>
@@ -29,17 +28,16 @@
                         <td><%= row["address_origin"] %></td>
                         <td><%= row["address_destination"] %></td>
                         <td><%= row["state"] %></td>
-                        <td><%= row["promotion_code"] %></td>
+                        <td><%= row["time_estimated"] %> min aprox.</td>
                         <td><%= row["first_name"] %></td>
-                        <td><%= row["brand"] %></td>
+                        <td><%= row["payment_type"] %></td>
                         <td><%= row["start_time"] %></td>
                         <td><%= row["end_time"] %></td>
-                        <td><%= row["amount"] %></td>
+                        <td>S/. <%= row["amount"] %></td>
                     </tr>    
                     <% end %>
                 </tbody>
             </table>
         </div>
-        <div class="col-sm-1"></div>
     </div>
 </div>

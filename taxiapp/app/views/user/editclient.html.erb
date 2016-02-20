@@ -1,86 +1,89 @@
-<div id="page-content-wrapper">
-    <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="text-center">Modificar Perfil</h1>
-            <hr>
-        </div>
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">Modificar Perfil</h1>
+        <hr>
     </div>
-    
-    <div class="row">
-      <div class="col-md-4 col-sm-3 col-xs-1"></div>
-      <div class="col-md-4 col-sm-6 col-xs-10">
-          
-          <%= form_for @user, url: user_update_path(@user) do |f| %>
-          
-              <div class="form-group">
-                   <label class="frm-title">Cuenta</label>
-              </div>
-              
-              <div class="form-group">
-                <label for="email">Email address</label>
-                  <%= f.text_field :email,  :class => 'form-control', :placeholder => 'Email' %>
-              </div>
-              
-              <div class="form-group">
-                <label for="passwd">Password</label>
-                <%= f.password_field :passwd,  :class => 'form-control', :placeholder => 'Password' %>
-              </div>
-              
-              <br/>
-              
-              <div class="form-group">
-                   <label class="frm-title">Perfil</label>
-              </div>
-              
-              <div class="form-group">
-                <label for="first_name">Nombre</label>
-                <%= f.text_field :first_name,  :class => 'form-control', :placeholder => 'Nombre' %>
-              </div>
-              
-              <div class="form-group">
-                <label for="last_name">Apellidos</label>
-                <%= f.text_field :last_name,  :class => 'form-control', :placeholder => 'Apellido' %>
-              </div>
-              
-              <div class="form-group">
-                <label for="phone">Celular</label>
-                <%= f.text_field :phone,  :class => 'form-control', :placeholder => 'Celular' %>
-              </div>
-              
-              <br/>
-              
-                <div class="form-group">
-                   <label class="frm-title">Pago</label>
-                </div>
-              
-              
-            <div class="form-group">
-                <label for="credit_card">Numero de Tarjeta</label>
-                <%= f.text_field :credit_card,  :class => 'form-control', :placeholder => 'Numero de Tarjeta' %>
-            </div>
-              
-            <div class="form-group">
-                <div class="container-fluid frm-padding" >
-                    <div class="col-xs-7 frm-padding">
-                    <label for="expiration_credit_card">Fecha de Vencimiento</label>
-                    <%= f.text_field :expiration_credit_card,  :class => 'form-control', :placeholder => 'Fecha de Vencimiento' %>
-                    </div>
-                    
-                    <div class="col-xs-5 frm-padding">
-                    <label for="cvv">CVV</label>
-                    <%= f.text_field :cvv,  :class => 'form-control', :placeholder => 'CVV' %>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <%= f.hidden_field :role, :value => "2" %>
-            <%= f.submit 'Modificar Perfil', :class => 'btn btn-primary btn-lg btn-block' %>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="row">
+  <div class="col-md-4 col-sm-3 col-xs-1"></div>
+  <div class="col-md-4 col-sm-6 col-xs-10">
       
-        <% end %>
-     
-      </div>
-      <div class="col-md-4 col-sm-3 col-xs-1"></div>
-    </div>
+      <%= form_for @user, url: user_update_path(@user) do |f| %>
+      
+          <div class="form-group">
+               <label class="frm-title">Cuenta</label>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email address</label>
+              <%= f.text_field :email,  :class => 'form-control', :placeholder => 'Email' %>
+          </div>
+          
+          <div class="form-group">
+            <label for="passwd">Password</label>
+            <%= f.password_field :passwd,  :class => 'form-control', :placeholder => 'Password' %>
+          </div>
+          
+          <br/>
+          
+          <div class="form-group">
+               <label class="frm-title">Perfil</label>
+          </div>
+          
+          <div class="form-group">
+            <label for="first_name">Nombre</label>
+            <%= f.text_field :first_name,  :class => 'form-control', :placeholder => 'Nombre' %>
+          </div>
+          
+          <div class="form-group">
+            <label for="last_name">Apellidos</label>
+            <%= f.text_field :last_name,  :class => 'form-control', :placeholder => 'Apellido' %>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Celular</label>
+            <%= f.text_field :phone,  :class => 'form-control', :placeholder => 'Celular' %>
+          </div>
+          
+          <br/>
+          
+            <div class="form-group">
+               <label class="frm-title">Pago</label>
+            </div>
+          
+          
+        <div class="form-group">
+            <label for="credit_card">Numero de Tarjeta</label>
+            <%= f.text_field :credit_card,  :class => 'form-control', :placeholder => 'Numero de Tarjeta' %>
+        </div>
+          
+        <div class="form-group">
+            <div class="container-fluid frm-padding" >
+                <div class="col-xs-7 frm-padding">
+                <label for="expiration_credit_card">Fecha de Vencimiento</label>
+                <%= f.text_field :expiration_credit_card,  :class => 'form-control', :placeholder => 'Fecha de Vencimiento' %>
+                </div>
+                
+                <div class="col-xs-5 frm-padding">
+                <label for="cvv">CVV</label>
+                <%= f.text_field :cvv,  :class => 'form-control', :placeholder => 'CVV' %>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <%= f.hidden_field :role, :value => "2" %>
+        <%= f.submit 'Modificar Perfil', :class => 'btn btn-primary btn-lg btn-block' %>
+  
+    <% end %>
+ 
   </div>
+  <div class="col-md-4 col-sm-3 col-xs-1"></div>
+</div>
 </div>

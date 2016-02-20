@@ -1,0 +1,307 @@
+<div class="modal fade" id="modalusereditadmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for @user, url: order_edituseradmin_path(@user) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar Usuario</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+          
+            <div class="form-group">
+              <label for="first_name">Nombre</label>
+              <%= f.text_field :first_name,  :class => 'form-control first_name', :placeholder => 'Nombre' %>
+            </div>
+            
+            <div class="form-group">
+              <label for="last_name">Apellidos</label>
+              <%= f.text_field :last_name,  :class => 'form-control last_name', :placeholder => 'Apellido' %>
+            </div>
+            
+            <div class="form-group">
+              <div class="container-fluid frm-padding" >
+                <div class="col-xs-5 frm-padding">
+                  <label for="phone">Celular</label>
+                  <%= f.text_field :phone,  :class => 'form-control phone', :placeholder => 'Celular' %>
+                </div>
+                <div class="col-xs-7 frm-padding">
+                  <label for="state_driver">Estado</label>
+                  <%= f.text_field :state_driver,  :class => 'form-control state_driver', :placeholder => 'Estado' %>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="credit_card">Numero de Tarjeta</label>
+                <%= f.text_field :credit_card,  :class => 'form-control credit_card', :placeholder => 'Numero de Tarjeta' %>
+            </div>
+            
+            <div class="form-group">
+                <div class="container-fluid frm-padding" >
+                    <div class="col-xs-7 frm-padding">
+                    <label for="expiration_credit_card">Fecha de Vencimiento</label>
+                    <%= f.text_field :expiration_credit_card,  :class => 'form-control expiration_credit_card', :placeholder => 'Fecha de Vencimiento' %>
+                    </div>
+                    
+                    <div class="col-xs-5 frm-padding">
+                    <label for="cvv">CVV</label>
+                    <%= f.text_field :cvv,  :class => 'form-control cvv', :placeholder => 'CVV' %>
+                    </div>
+                </div>
+            </div>
+            
+            <%= f.hidden_field :id, :class => 'form-control id' %>
+            
+            <div class="col-md-1"></div>
+          </div>
+      </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= f.submit 'Guardar', :class => 'btn btn-success' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modaluserdeladmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for @user, url: order_deluseradmin_path(@user) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Eliminar Usuario</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+          
+            <div class="form-group">
+              <label for="first_name">Seguro que deseas eliminar al usuario <span class="first_name"></span> con id <span class="id"></span> ?</label>
+            </div>
+
+            <%= f.hidden_field :id, :class => 'form-control id' %>
+            
+            <div class="col-md-1"></div>
+          </div>
+      </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= f.submit 'Eliminar', :class => 'btn btn-danger' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<!--Order-->
+
+<div class="modal fade" id="modalordereditadmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for @order, url: order_editorderadmin_path(@order) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar Pedido</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+          
+            <div class="form-group">
+              <label for="address_origin">Origen</label>
+              <%= f.text_field :address_origin,  :class => 'form-control address_origin', :placeholder => 'Origen' %>
+            </div>
+            
+            <div class="form-group">
+              <label for="address_destination">Destino</label>
+              <%= f.text_field :address_destination,  :class => 'form-control address_destination', :placeholder => 'Destino' %>
+            </div>
+            
+            <div class="form-group">
+                <label for="reference">Referencia</label>
+                <%= f.text_field :reference,  :class => 'form-control reference', :placeholder => 'Referencia' %>
+            </div>
+            
+            <div class="form-group">
+                <label for="state">Estado</label>
+                <%= f.text_field :state,  :class => 'form-control state', :placeholder => 'Estado de la orden' %>
+            </div>
+            
+            <%= f.hidden_field :id, :class => 'form-control idorder' %>
+            
+            <div class="col-md-1"></div>
+          </div>
+      </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= f.submit 'Guardar', :class => 'btn btn-success' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalorderdeladmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for @order, url: order_delorderadmin_path(@order) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Eliminar Pedido</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+          
+            <div class="form-group">
+              <label for="first_name">Seguro que deseas eliminar el pedido con id <span class="idorder"></span> ?</label>
+            </div>
+
+            <%= f.hidden_field :id, :class => 'form-control idorder' %>
+            
+            <div class="col-md-1"></div>
+          </div>
+      </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= f.submit 'Eliminar', :class => 'btn btn-danger' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<!--Order cli -->
+
+<div class="modal fade" id="modalordereditcli" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for @order, url: order_editordercli_path(@order) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Editar Pedido</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+          
+            <div class="form-group">
+              <label for="address_origin">Origen</label>
+              <%= f.text_field :address_origin,  :class => 'form-control address_origin', :placeholder => 'Origen' %>
+            </div>
+            
+            <div class="form-group">
+              <label for="address_destination">Destino</label>
+              <%= f.text_field :address_destination,  :class => 'form-control address_destination', :placeholder => 'Destino' %>
+            </div>
+            
+            <div class="form-group">
+                <label for="reference">Referencia</label>
+                <%= f.text_field :reference,  :class => 'form-control reference', :placeholder => 'Referencia' %>
+            </div>
+            
+            <div class="form-group">
+                <label for="state">Tiempo Estimado</label>
+                <%= f.text_field :time_estimated,  :class => 'form-control time_estimated', :placeholder => 'Tiempo estimado' %>
+            </div>
+            
+            <div class="form-group">
+                <label for="state">Forma de Pago</label>
+                <%= f.text_field :payment_type,  :class => 'form-control payment_type', :placeholder => 'Forma de Pago' %>
+            </div>
+            
+            <%= f.hidden_field :id, :class => 'form-control idorder' %>
+            
+            <div class="col-md-1"></div>
+          </div>
+      </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= f.submit 'Guardar', :class => 'btn btn-success' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalorderdelcli" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for @order, url: order_delordercli_path(@order) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Cancelar Pedido</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+          
+            <div class="form-group">
+              <label for="first_name">Seguro que deseas cancelar el pedido con id <span class="idorder"></span> ?</label>
+            </div>
+
+            <%= f.hidden_field :id, :class => 'form-control idorder' %>
+            
+            <div class="col-md-1"></div>
+          </div>
+      </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= f.submit 'Eliminar', :class => 'btn btn-danger' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<!--Order Chofer -->
+
+<div class="modal fade" id="modalorderdeldri" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for @order, url: order_delorderdri_path(@order) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Pasar Pedido</h4>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+          
+            <div class="form-group">
+              <label for="first_name">Seguro que deseas pasar el pedido con id <span class="idorder"></span> ?</label>
+            </div>
+
+            <%= f.hidden_field :id, :class => 'form-control idorder' %>
+            
+            <div class="col-md-1"></div>
+          </div>
+      </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= f.submit 'Pasar', :class => 'btn btn-danger' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

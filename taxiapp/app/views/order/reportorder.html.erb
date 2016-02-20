@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Pedidos</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pedido</th>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Referencia</th>
+                        <th>Estado</th>
+                        <th>Chofer</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Importe</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @orders.each(:as => :hash) do |row, index| %>
+                    <tr>
+                        <td><%= row["orderid"] %></td>
+                        <td><%= row["address_origin"] %></td>
+                        <td><%= row["address_destination"] %></td>
+                        <td><%= row["refenrece"] %></td>
+                        <td><%= row["state"] %></td>
+                        <td><%= row["first_name"] %></td>
+                        <td><%= row["start_time"] %></td>
+                        <td><%= row["end_time"] %></td>
+                        <td>S/. <%= row["amount"] %></td>
+                        <td>
+                            <a class="btn btn-success" onclick="editOrderAdmin(this)" 
+                                                        data-id="<%= row["id"] %>"
+                                                        data-addressorigin="<%= row["address_origin"] %>"
+                                                        data-addressdestination="<%= row["address_destination"] %>"
+                                                        data-reference="<%= row["reference"] %>"
+                                                        data-state="<%= row["state"] %>"
+                                                        data-idorder="<%= row["orderid"] %>"
+                                                        data-toggle="modal" 
+                                                        data-target="#modalordereditadmin" title="Modificar orden"><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-danger" onclick="delOrderAdmin(this)" 
+                                                        data-idorder="<%= row["orderid"] %>"
+                                                        data-toggle="modal" 
+                                                        data-target="#modalorderdeladmin" title="Anular orden"><i class="fa fa-close"></i></a>
+                        </td>
+                    </tr>    
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+function editOrderAdmin(obj){
+
+    $(".address_origin").val($(obj).attr('data-addressorigin'));
+    $(".address_destination").val($(obj).attr('data-addressdestination'));
+    $(".state").val($(obj).attr('data-state'));
+    $(".reference").val($(obj).attr('data-reference'));
+    $(".idorder").val($(obj).attr('data-idorder'));
+    
+}
+
+function delOrderAdmin(obj){
+    $(".idorder").text($(obj).attr('data-idorder'));
+    $(".idorder").val($(obj).attr('data-idorder'));
+}
+</script>

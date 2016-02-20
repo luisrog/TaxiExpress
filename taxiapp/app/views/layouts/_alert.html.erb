@@ -1,0 +1,6 @@
+<% if @alertType && @alertMessage %>
+<div class="alert alert-<%= @alertType %>" role="alert" style="position:absolute;; margin-top:135px; width:600px; margin-left:50%; left:-300px; z-index:1000;">
+    <%= @alertMessage %>
+</div>
+<% end %>
+

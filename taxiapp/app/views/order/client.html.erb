@@ -2,10 +2,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Pedir Taxi</h1>
+                <h1 class="text-center">Pedir Taxi Express</h1>
                 <hr>
             </div>
         </div>
+        
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
         <div class="row">
             <div class="col-md-7">
                 <%= form_for @order, url: order_create_path(@order) do |f| %>
@@ -36,13 +42,10 @@
                          
                         <div class="row form-group">
                             <div class="col-sm-1"></div>
-                            <div class="col-sm-4">
-                                <%= f.text_field :promotion_code,  :class => 'form-control', :placeholder => 'Promocion' %>
-                            </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-5">
                                 <%= f.text_field :time_estimated,  :class => 'form-control', :placeholder => 'Estimado' %>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-5">
                                 <%= f.text_field :payment_type,  :class => 'form-control', :placeholder => 'Pago' %>
                             </div>
                             <div class="col-sm-1"></div>
@@ -72,9 +75,9 @@
                             <th>Origen</th>
                             <th>Destino</th>
                             <th>Estado</th>
-                            <th>Promocion</th>
+                            <th>Estimado</th>
                             <th>Chofer</th>
-                            <th>Vehiculo</th>
+                            <th>Pago</th>
                             <th>Inicio</th>
                             <th>Fin</th>
                             <th>Importe</th>
@@ -87,16 +90,26 @@
                             <td><%= row["address_origin"] %></td>
                             <td><%= row["address_destination"] %></td>
                             <td><%= row["state"] %></td>
-                            <td><%= row["promotion_code"] %></td>
+                            <td><%= row["time_estimated"] %> min aprox.</td>
                             <td><%= row["first_name"] %></td>
-                            <td><%= row["brand"] %></td>
+                            <td><%= row["payment_type"] %></td>
                             <td><%= row["start_time"] %></td>
                             <td><%= row["end_time"] %></td>
                             <td><%= row["amount"] %></td>
-                             <td>
-                                <a class="btn btn-primary" title="Ver detalle de este pedido"><i class="fa fa-search"></i></a>
-                                <a class="btn btn-success" title="Cambiar el tiempo de llegada al cliente"><i class="fa fa-pencil"></i></a>
-                                <a class="btn btn-danger" title="Rechazar la orden por motivos mayores"><i class="fa fa-close"></i></a>
+                            <td>
+                                <a class="btn btn-success" onclick="editOrderCli(this)" 
+                                                            data-addressorigin="<%= row["address_origin"] %>"
+                                                            data-addressdestination="<%= row["address_destination"] %>"
+                                                            data-reference="<%= row["reference"] %>"
+                                                            data-paymenttype="<%= row["payment_type"] %>"
+                                                            data-timeestimated="<%= row["time_estimated"] %>"
+                                                            data-idorder="<%= row["orderid"] %>"
+                                                            data-toggle="modal" 
+                                                            data-target="#modalordereditcli" title="Modificar orden"><i class="fa fa-pencil"></i></a>
+                                <a class="btn btn-danger" onclick="delOrderCli(this)" 
+                                                            data-idorder="<%= row["orderid"] %>"
+                                                            data-toggle="modal" 
+                                                            data-target="#modalorderdelcli" title="Anular orden"><i class="fa fa-close"></i></a>
                             </td>
                         </tr>    
                         <% end %>
@@ -107,3 +120,20 @@
     </div>
 </div>
 
+<script>
+function editOrderCli(obj){
+
+    $(".address_origin").val($(obj).attr('data-addressorigin'));
+    $(".address_destination").val($(obj).attr('data-addressdestination'));
+    $(".payment_type").val($(obj).attr('data-paymenttype'));
+    $(".time_estimated").val($(obj).attr('data-timeestimated'));
+    $(".reference").val($(obj).attr('data-reference'));
+    $(".idorder").val($(obj).attr('data-idorder'));
+    
+}
+
+function delOrderCli(obj){
+    $(".idorder").text($(obj).attr('data-idorder'));
+    $(".idorder").val($(obj).attr('data-idorder'));
+}
+</script>

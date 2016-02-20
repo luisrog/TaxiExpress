@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-md-10">
+            <h1 class="text-center">Usuarios</h1>
+            <hr>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th>Tarjeta</th>
+                        <th>Fecha de expiracion</th>
+                        <th>Estado</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @users.each(:as => :hash) do |row, index| %>
+                    <tr>
+                        <td><%= row["id"] %></td>
+                        <td><%= row["first_name"] %></td>
+                        <td><%= row["last_name"] %></td>
+                        <td><%= row["email"] %></td>
+                        <td><%= row["phone"] %></td>
+                        <td><%= row["credit_card"] %></td>
+                        <td><%= row["expiration_credit_card"] %></td>
+                        <td><%= row["state_driver"] %></td>
+                        <td>
+                            <a class="btn btn-success" onclick="editUserAdmin(this)" 
+                                                        data-id="<%= row["id"] %>"
+                                                        data-firstname="<%= row["first_name"] %>"
+                                                        data-lastname="<%= row["last_name"] %>"
+                                                        data-phone="<%= row["phone"] %>"
+                                                        data-statedriver="<%= row["state_driver"] %>"
+                                                        data-creditcard="<%= row["credit_card"] %>"
+                                                        data-expirationcredit="<%= row["expiration_credit_card"] %>" 
+                                                        data-cvv="<%= row["cvv"] %>" 
+                                                        data-toggle="modal" 
+                                                        data-target="#modalusereditadmin"  title="Cambiar perfil de usuario"><i class="fa fa-pencil"></i></a>
+                                                        
+                            <a class="btn btn-danger" onclick="delUserAdmin(this)" 
+                                                        data-id="<%= row["id"] %>"
+                                                        data-firstname="<%= row["first_name"] %>"
+                                                        data-toggle="modal" 
+                                                        data-target="#modaluserdeladmin"
+                                                        title="Eliminar usuarios"><i class="fa fa-close"></i></a>
+                        </td>
+                    </tr>    
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-10">
+    </div>
+</div>
+    
+    <script>
+        function editUserAdmin(obj){
+
+            $(".first_name").val($(obj).attr('data-firstname'));
+            $(".last_name").val($(obj).attr('data-lastname'));
+            $(".phone").val($(obj).attr('data-phone'));
+            $(".state_driver").val($(obj).attr('data-statedriver'));
+            $(".credit_card").val($(obj).attr('data-creditcard'));
+            $(".expiration_credit_card").val($(obj).attr('data-expirationcredit'));
+            $(".cvv").val($(obj).attr('data-cvv'));
+            $(".id").val($(obj).attr('data-id'));
+            
+        }
+        
+        function delUserAdmin(obj){
+            $(".first_name").text($(obj).attr('data-firstname'));
+            $(".id").text($(obj).attr('data-id'));
+            $(".id").val($(obj).attr('data-id'));
+        }
+    </script>

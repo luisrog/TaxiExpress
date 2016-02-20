@@ -8,6 +8,9 @@
             </div>
         </div>
         
+        <br/>
+        <br/>
+        
         <div class="row">
             <div class="col-md-5">
                 <%= form_for @order, url: order_update_path(@order) do |f| %>
@@ -41,6 +44,10 @@
                                         <%= f.submit 'Terminar Pedido', :class => 'btn btn-danger btn-lg btn-block' %>
                                     <% elsif  @order.state == "Pendiente" %>
                                         <%= f.submit 'Confirmar Orden', :class => 'btn btn-success btn-lg btn-block' %>
+                                        <a class="btn btn-danger btn-lg btn-block" onclick="delOrderDri(this)" 
+                                                            data-idorder="<%= @order.id %>"
+                                                            data-toggle="modal" 
+                                                            data-target="#modalorderdeldri" title="Anular orden">Pasar Pedido</a>
                                     <% end %>
                                 </td>
                             </tr>
@@ -50,7 +57,7 @@
             </div>
             
             <div class="col-md-7">
-                <iframe  width="640" height="270" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Universidad%20Peruana%20de%20Ciencias%20Aplicadas&key=AIzaSyAEz6ZPTS0y5N4hnuVx2nVqlK2tXsfftmQ" allowfullscreen></iframe>                    
+                <iframe  width="640" height="320" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Universidad%20Peruana%20de%20Ciencias%20Aplicadas&key=AIzaSyAEz6ZPTS0y5N4hnuVx2nVqlK2tXsfftmQ" allowfullscreen></iframe>                    
             </div>
         </div>
         
@@ -68,7 +75,6 @@
                             <th>Inicio</th>
                             <th>Fin</th>
                             <th>Importe</th>
-                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,11 +89,6 @@
                             <td><%= row["start_time"] %></td>
                             <td><%= row["end_time"] %></td>
                             <td>S/. <%= row["amount"] %></td>
-                            <td>
-                                <a class="btn btn-primary" title="Ver detalle de este pedido"><i class="fa fa-search"></i></a>
-                                <a class="btn btn-success" title="Cambiar el tiempo de llegada al cliente"><i class="fa fa-pencil"></i></a>
-                                <a class="btn btn-danger" title="Rechazar la orden por motivos mayores"><i class="fa fa-close"></i></a>
-                            </td>
                         </tr>    
                         <% end %>
                     </tbody>
@@ -97,4 +98,11 @@
         
     </div>
 </div>
+
+<script>
+function delOrderDri(obj){
+    $(".idorder").text($(obj).attr('data-idorder'));
+    $(".idorder").val($(obj).attr('data-idorder'));
+}
+</script>
 
